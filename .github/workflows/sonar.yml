@@ -27,7 +27,12 @@ jobs:
     - name: Build with Maven
       run: mvn package --file pom.xml
 
-    - name: Check target directory contents
-      run: ls -l target || echo "Target directory does not exist"
+    - name: upload artifact 
+      uses: actions/upload-artifact@v4
+      with:
+        name: webapp.war
+        path: home/actions-runner/_work/Collage_app/Collage_app/webapp/target/webapp.war
+       
+
 
 
