@@ -31,7 +31,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: webapp.war
-        path: /home/runner/work/Collage_app/Collage_app/webapp/target/webapp.war
+        path: /actions-runner/_work/Collage_app/Collage_app/webapp/target/webapp.war
+
        
 
 
