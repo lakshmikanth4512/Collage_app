@@ -79,8 +79,8 @@ jobs:
     - name: Upload JAR artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-war
-        path: webapp/*.war 
+        name: webapp.war
+        path: /home/runner/work/Newtons_College/Newtons_College/webapp/target/webapp.war 
 
 
 
