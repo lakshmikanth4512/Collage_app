@@ -39,3 +39,5 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
              mvn clean verify sonar:sonar -X
+             mvn sonar:sonar -Dsonar.login=<YOUR_SONARQUBE_TOKEN>
+
