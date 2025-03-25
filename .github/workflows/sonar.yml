@@ -47,8 +47,8 @@ jobs:
       run: gitleaks detect source . -r gitleaks-report.json -f json
 
 
-  test:
-    runs-on: ubuntu-latest
+ test:
+    runs-on: self-hosted
     needs: security-check
     steps:
     - uses: actions/checkout@v4
@@ -60,6 +60,7 @@ jobs:
         cache: maven
     - name: Unit Test Cases
       run: mvn test
+
 
 
 
