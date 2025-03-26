@@ -83,7 +83,7 @@ jobs:
       with:
         serverUrl: http://54.221.109.68:8081
         username: ${{ secrets.NEXUS_USERNAME }}
-        password: ${{ secrets.NEXUS_PASSWORD }}
+        password: raju
         format: maven2
         repository: maven-releases
         coordinates: groupId=com.example artifactId=app version=1.0.0
