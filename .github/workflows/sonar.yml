@@ -82,13 +82,14 @@ jobs:
       uses: sonatype-nexus-community/nexus-repo-github-action@master
       with:
         serverUrl: http://54.221.109.68:8081
-        username: ${{ secrets.NEXUS_USERNAME }}
+        username: admin
         password: ${{ secrets.NEXUS_PASSWORD }}
         format: maven2
         repository: maven-releases
         coordinates: groupId=com.example artifactId=app version=1.0.0
         assets: extension=war
         filename: webapp/target/webapp.war
+
 
 
       
