@@ -89,7 +89,7 @@ jobs:
         coordinates: groupId=com.example artifactId=app version=1.0.0
         assets: extension=war
         filename: webapp/target/webapp.war
-
+        run: echo $NEXUS_PASSWORD
 
 
       
