@@ -2,7 +2,7 @@ name: CICD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "" ]
 
 jobs:
 
@@ -27,13 +27,36 @@ jobs:
         path: webapp/target/webapp.war
 
 
-    - uses: actions/checkout@v4
-      with:
-       # Disabling shallow clones is recommended for improving the relevancy of reporting
-        fetch-depth: 0
- 
 
 
+  deploy:
+    needs: build_project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download WAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: webapp
+          path: /tmp
+
+      - name: Deploy WAR file to Tomcat on AWS EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          TOMCAT_WEBAPPS_PATH: "/opt/tomcat/webapps"
+        run: |
+          echo "$EC2_SSH_KEY" > private_key.pem
+          chmod 600 private_key.pem
+
+          # Copy WAR file to EC2 instance
+          scp -i private_key.pem /tmp/webapp.war $EC2_USER@$EC2_HOST:$TOMCAT_WEBAPPS_PATH/webapp.war
+
+          # Restart Tomcat to deploy the new version
+          ssh -i private_key.pem $EC2_USER@$EC2_HOST << EOF
+            sudo systemctl restart tomcat
+          EOF
 
 
 
