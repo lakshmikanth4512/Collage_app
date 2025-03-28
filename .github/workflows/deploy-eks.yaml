@@ -1,11 +1,10 @@
-name: deploy eks cicd
+name: CICD Pipeline 
 
 on:
-  push:
+  pull:
     branches: [ "main" ]
 
 jobs:
-
   build_project:
     runs-on: ubuntu-latest
     steps:
