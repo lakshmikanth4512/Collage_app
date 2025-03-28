@@ -1,23 +1,24 @@
-# Use the official Node.js 16 image
-FROM node:16
-
-# Set the working directory in the container
+# Use an official Maven image to build the project
+FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy necessary files
+COPY pom.xml ./
+COPY server ./server
+COPY webapp ./webapp
 
-# Install dependencies
-RUN npm install
+# Build the project
+RUN mvn clean package -DskipTests
 
-# Copy the entire React app source code to the container
-COPY . .
+# Use a lightweight JDK runtime for the final image
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
 
-# Build the React app
-RUN npm run build
+# Copy the built JAR file from the previous stage
+COPY --from=build /app/server/target/*.jar app.jar
 
-# Expose port 3000 (the port your Node.js app runs on)
-EXPOSE 3000
+# Expose the application port
+EXPOSE 8080
 
-# Start the Node.js app
-CMD ["npm", "start"]
+# Run the application
+CMD ["java", "-jar", "app.jar"]
