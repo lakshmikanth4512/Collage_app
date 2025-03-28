@@ -1,4 +1,4 @@
-name: CICD Pipeline 
+name: deploy eks cicd
 
 on:
   push:
