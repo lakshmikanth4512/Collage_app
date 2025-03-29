@@ -47,7 +47,8 @@ jobs:
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
           TOMCAT_WEBAPPS_PATH: "/var/lib/tomcat9/webapps"
         run: |
-          echo "$EC2_SSH_KEY" > private_key.pem
+          #echo "$EC2_SSH_KEY" > private_key.pem
+          echo "$EC2_SSH_KEY" | tr -d '\r' > private_key.pem
           chmod 600 private_key.pem
 
           # Copy WAR file to EC2 instance
