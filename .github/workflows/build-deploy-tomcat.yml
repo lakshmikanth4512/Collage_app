@@ -2,7 +2,7 @@ name: CICD Pipeline
 
 on:
   push:
-    branches: [ "" ]
+    branches: [ "main" ]
 
 jobs:
 
@@ -45,7 +45,7 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-          TOMCAT_WEBAPPS_PATH: "/opt/tomcat/webapps"
+          TOMCAT_WEBAPPS_PATH: "/var/lib/tomcat9/webapps"
         run: |
           echo "$EC2_SSH_KEY" > private_key.pem
           chmod 600 private_key.pem
