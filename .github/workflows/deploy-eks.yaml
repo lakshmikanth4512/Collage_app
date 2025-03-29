@@ -60,7 +60,7 @@ jobs:
 
     
   deploy_to_EKS:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: docker_build_push
     steps:
     - name: Checkout Code
