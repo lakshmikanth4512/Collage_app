@@ -37,7 +37,7 @@ jobs:
       - name: Download WAR artifact
         uses: actions/download-artifact@v4
         with:
-          name: webapp.war
+          name: webapp-artifact
           path: /tmp
 
       - name: Deploy WAR file to Tomcat on AWS EC2
