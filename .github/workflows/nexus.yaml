@@ -25,3 +25,17 @@ jobs:
       with:
         name: webapp.war
         path: webapp/target/webapp.war
+
+
+
+  Upload_to_Nexus:
+    needs: build_project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download WAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: webapp-artifact
+          path: /tmp
+        
