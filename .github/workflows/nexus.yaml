@@ -36,6 +36,6 @@ jobs:
       - name: Download WAR artifact
         uses: actions/download-artifact@v4
         with:
-          name: webapp-artifact
+          name: webapp.war
           path: /tmp
         
