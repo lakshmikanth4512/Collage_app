@@ -1,8 +1,24 @@
 name: CICD Pipeline 
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Select the Repository' 
+        required: true
+        type: choice
+        # options:
+          
+      application:
+        type: choice
+        description: 'Which Backend Application to Deploy?' 
+        required: true
+        # options:
+
+      check_develop:
+        description: 'Deploy develop branch?' 
+        required: true
+        type: boolean
 
 jobs:
 
