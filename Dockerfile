@@ -1,5 +1,5 @@
 # Use an official Tomcat image to run the application
-FROM tomcat:9.0
+FROM public.ecr.aws/docker/library/tomcat:9.0
 
 # Optional: Remove default web apps if desired
 RUN rm -rf /usr/local/tomcat/webapps/*
